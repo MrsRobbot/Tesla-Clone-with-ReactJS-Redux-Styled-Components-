@@ -37,6 +37,7 @@ const Container = styled.div`
   position: fixed;
   display: flex;
   align-items: center;
+  justify-content:space-between;
   padding: 0 20px;
   top: 0;
   left: 0;
@@ -53,10 +54,15 @@ const Menu = styled.div`
     padding: 0 10px;
     flex-wrap: nowrap;
   }
+  @media (max-width: 768px) {
+    display: none;
+    
+  }
 `;
 
 const RightMenu = styled.div`
 display: flex;
+align-items: center;
 a {
     font-weight: 600;
     text-transform: uppercase;
@@ -64,8 +70,13 @@ a {
     padding: 0 10px;
    
   }
+  @media (max-width: 768px) {
+    
+    
+  }
 `
 const CustomMenu = styled(MenuIcon)`
 
+cursor: pointer;
 
 `
