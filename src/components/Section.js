@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import Fade from "react-reveal/Fade";
-import { bottom } from "../../node_modules/@material-ui/system/es/positions";
 function Section({
   title,
   description,
