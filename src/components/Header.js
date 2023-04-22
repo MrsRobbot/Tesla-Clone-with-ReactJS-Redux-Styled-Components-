@@ -2,22 +2,27 @@ import React ,{useState}from "react";
 import styled from "styled-components";
 import MenuIcon from "@material-ui/icons/Menu";
 import CloseIcon from "@material-ui/icons/Close";
+import { SelectCars } from "../features/car/carSlice.js";
+import { useSelector } from "react-redux";
 
 function Header() {
   const [burgerStatus,setBurgerStatus]= useState(false);
+  const cars = useSelector(SelectCars)
+  //console.log(cars);
   return (
     <Container>
       <a>
         <img src="/images/logo.svg" alt="" />
       </a>
       <Menu>
-        <a href="#">Model S</a>
+        {cars && cars.map((car, index)=> (<a key={index} href="#">{car}</a>))}
+       {/*  <a href="#">Model S</a>
 
         <a href="#">Model Y</a>
 
         <a href="#">Model 3</a>
 
-        <a href="#">Model Y</a>
+        <a href="#">Model Y</a> */}
       </Menu>
       <RightMenu>
         <a href="#">Shop</a>
@@ -27,8 +32,9 @@ function Header() {
       <BurgerNav show={burgerStatus}>
         <CloseWrapper>
           <CustomClose onClick={()=>setBurgerStatus(false)}/>
+          
         </CloseWrapper>
-
+        {cars && cars.map((car, index)=> (<li key={index} ><a href="#">{car}</a></li>))}
         <li>
           <a href="#">Existing inventory</a>
         </li>
@@ -44,24 +50,7 @@ function Header() {
         <li>
           <a href="#">Roadaster</a>
         </li>
-        <li>
-          <a href="#">Existing inventory</a>
-        </li>
-        <li>
-          <a href="#">Existing inventory</a>
-        </li>
-        <li>
-          <a href="#">Existing inventory</a>
-        </li>
-        <li>
-          <a href="#">Existing inventory</a>
-        </li>
-        <li>
-          <a href="#">Existing inventory</a>
-        </li>
-        <li>
-          <a href="#">Existing inventory</a>
-        </li>
+        
       </BurgerNav>
     </Container>
   );
@@ -126,7 +115,8 @@ const BurgerNav = styled.div`
   display: flex;
   flex-direction: column;
   text-align: start;
-  transform: ${propos=>propos.show ? 'TranslateX(0)':'TranslateX(100%)'};
+  transform: ${props=>props.show ? 'TranslateX(0)':'TranslateX(100%)'};
+  transition: transform 0.5s ease-in;
   li {
     padding: 15px 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
